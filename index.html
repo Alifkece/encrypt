@@ -1,212 +1,222 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tools encrypt HTML By Aliftzy</title>
-  <style>
-    :root{
-      --bg-dark:#050517;
-      --card:rgba(8,12,32,0.78);
-      --accent1:#7c3aed;
-      --accent2:#06b6d4;
-      --text:#e8f0ff;
-      --glass:rgba(255,255,255,0.05);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:var(--bg-dark);color:var(--text);overflow-x:hidden}
-    /* Background */
-    .bg-video{position:fixed;inset:0;z-index:0;overflow:hidden}
-    .bg-video video{width:100%;height:100%;object-fit:cover;display:block}
-    .bg-overlay{position:fixed;inset:0;z-index:1;background:linear-gradient(120deg,rgba(124,58,237,0.12),rgba(6,182,212,0.12));pointer-events:none}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tools Encrypt HTML - Aliftzy</title>
 
-    /* Card layout */
-    .wrap{position:relative;z-index:2;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:36px}
-    .card{width:1080px;max-width:100%;background:var(--card);border-radius:14px;padding:28px;border:1px solid var(--glass);box-shadow:0 12px 40px rgba(0,0,0,0.5)}
-    h1{margin:0;font-size:24px;background:linear-gradient(90deg,var(--accent1),var(--accent2));-webkit-background-clip:text;color:transparent}
-    .subtitle{font-size:14px;color:rgba(230,240,255,0.82);margin-top:6px}
-    .accent-line{height:6px;border-radius:6px;background:linear-gradient(90deg,var(--accent2),var(--accent1));margin:12px 0}
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
-    .grid{display:grid;grid-template-columns:1fr 420px;gap:18px;margin-top:16px}
-    label{display:block;font-size:13px;color:rgba(230,240,255,0.9);margin-bottom:8px}
-    textarea{width:100%;height:520px;padding:14px;border-radius:10px;border:1px solid var(--glass);background:rgba(255,255,255,0.02);color:var(--text);font-family:ui-monospace,Menlo,monospace;font-size:13px;resize:vertical}
+<style>
+:root{
+--bg:#000;--text:#fff;--muted:#aaa;
+--primary:#ff0000;--secondary:#AD4AE7;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{
+background:
+radial-gradient(circle at 20% 20%,rgba(255,255,255,.1),transparent 30%),
+radial-gradient(circle at 80% 10%,rgba(255,255,255,.08),transparent 25%),
+radial-gradient(circle at 50% 90%,rgba(255,255,255,.05),transparent 30%),
+var(--bg);
+color:var(--text);min-height:100vh;padding:20px;
+}
+.container{max-width:1100px;margin:auto}
 
-    .controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .btn{cursor:pointer;border:0;padding:10px 16px;border-radius:10px;font-weight:700;transition:all .18s}
-    .btn-primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white;box-shadow:0 0 14px rgba(124,58,237,0.35)}
-    .btn-primary:hover{transform:translateY(-3px)}
-    .btn-ghost{background:transparent;border:1px solid var(--glass);color:var(--text)}
-    .panel{border:1px solid var(--glass);border-radius:10px;padding:14px;background:rgba(255,255,255,0.02)}
-    .muted{font-size:13px;color:rgba(230,240,255,0.65)}
-    .foot{margin-top:14px;text-align:center;font-size:13px;color:rgba(230,240,255,0.75)}
+.profile-wrapper{
+width:150px;height:150px;border-radius:50%;
+margin:0 auto 25px;padding:5px;
+background:linear-gradient(135deg,var(--primary),var(--secondary));
+box-shadow:0 0 25px rgba(173,74,231,.5);
+animation:glow 4s infinite alternate
+}
+.profile-wrapper video{
+width:100%;height:100%;border-radius:50%;object-fit:cover
+}
+@keyframes glow{
+0%{box-shadow:0 0 15px var(--primary)}
+100%{box-shadow:0 0 30px var(--secondary)}
+}
 
-    @media (max-width:1100px){
-      .grid{grid-template-columns:1fr}
-      textarea{height:360px}
-      .card{padding:20px}
-    }
-  </style>
+.header{text-align:center;margin-bottom:30px}
+.title{font-family:'Orbitron',sans-serif;font-size:36px;font-weight:800}
+.subtitle{color:var(--muted)}
+
+.section{
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,.15);
+border-radius:18px;padding:28px;
+margin-bottom:30px;position:relative
+}
+.section::before{
+content:'';position:absolute;top:0;left:0;right:0;height:3px;
+background:linear-gradient(90deg,var(--primary),var(--secondary))
+}
+.section-title{
+font-family:'Orbitron',sans-serif;
+font-size:22px;margin-bottom:20px;
+display:flex;align-items:center;gap:10px
+}
+
+.textarea{
+width:100%;
+height:350px;
+background:rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.2);
+border-radius:12px;
+padding:12px;
+color:#fff;
+font-family:ui-monospace,monospace;
+resize:vertical;
+}
+
+.btn{
+width:100%;
+padding:14px;
+background:linear-gradient(135deg,var(--primary),var(--secondary));
+border:none;border-radius:12px;
+color:#fff;font-weight:bold;
+cursor:pointer;
+margin-top:10px
+}
+
+.actions{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+margin-top:10px
+}
+
+.btn-ghost{
+background:rgba(255,255,255,.1);
+border:1px solid rgba(255,255,255,.2)
+}
+.muted{color:#aaa;font-size:13px;margin-top:10px;text-align:center}
+</style>
 </head>
+
 <body>
+<div class="container">
 
-  <div class="bg-video">
-    <video autoplay muted playsinline loop src="https://files.catbox.moe/gos3hh.mp4"></video>
-  </div>
-  <div class="bg-overlay"></div>
+<div class="profile-wrapper">
+<video src="https://raw.githubusercontent.com/NdikzDatabase/Database/main/Database/1766825154684-h23xcv.mp4" autoplay loop muted playsinline></video>
+</div>
 
-  <div class="wrap">
-    <div class="card">
-      <h1>Tools Encrypt HTML By Aliftzy</h1>
-      <div class="subtitle">Tempel HTML di Bawah → klik <strong>Encrypt</strong>. Hasilnya bisa di copy dan di downhload dan code HTML akan tetap berjalan.</div>
-      <div class="accent-line"></div>
+<div class="header">
+<h1 class="title">Encrypt HTML Tool</h1>
+<p class="subtitle">Powered By Aliftzy 🍓</p>
+</div>
 
-      <div class="grid">
-        <div>
-          <label for="src">HTML Asli</label>
-          <textarea id="src" placeholder="Tempel HTML di sini..."></textarea>
+<div class="section">
+<h2 class="section-title"><i class="fas fa-code"></i> HTML Asli</h2>
 
-          <div class="controls">
-            <button id="encryptBtn" class="btn btn-primary">Encrypt → Generate</button>
-            <button id="previewBtn" class="btn btn-ghost">Preview</button>
-            <button id="downloadBtn" class="btn btn-ghost">Download</button>
-            <button id="copyBtn" class="btn btn-ghost">Copy</button>
-          </div>
+<textarea id="src" class="textarea" placeholder="Tempel kode HTML di sini..."></textarea>
 
-          <div style="margin-top:12px" class="muted">Note: Jika halaman asli bergantung pada relative assets (gambar/js lokal), hosting file hasil di server lebih baik.</div>
-        </div>
+<button class="btn" id="encryptBtn">
+<i class="fas fa-lock"></i> Encrypt → Generate Loader
+</button>
 
-        <div class="panel">
-          <label>Succses Encrypt HTML (loader)</label>
-          <textarea id="out" readonly placeholder="Hasil akan muncul di sini..."></textarea>
-          <div class="muted" style="margin-top:10px">Hasil menggunakan iframe-loader (metode paling kompatibel untuk menjalankan script internal).</div>
-        </div>
-      </div>
+<div class="actions">
+<button class="btn btn-ghost" id="copyBtn"><i class="fas fa-copy"></i> Copy</button>
+<button class="btn btn-ghost" id="downloadBtn"><i class="fas fa-download"></i> Download</button>
+<button class="btn btn-ghost" id="previewBtn"><i class="fas fa-eye"></i> Preview</button>
+<button class="btn btn-ghost" onclick="src.value=''"><i class="fas fa-trash"></i> Clear</button>
+</div>
 
-      <div class="foot">Tools Ini di buat khusus untuk meng Encrypt code html dan di rangcang khusus agar code tidak dapat di copy atau di ambil oknum lain,jadi gunakan lah sebaik mungkin.</div>
-    </div>
-  </div>
+<p class="muted">AES-GCM Encryption • Client-Side • HTML Loader</p>
+</div>
+
+<div class="section" id="outputSection">
+<h2 class="section-title"><i class="fas fa-terminal"></i> Output Loader HTML</h2>
+<textarea id="out" class="textarea" readonly></textarea>
+</div>
+
+</div>
 
 <script>
-// ---------- helpers ----------
-function minifyHTML(html){
-  return html.replace(/<!--([\s\S]*?)-->/g,'').replace(/>\s+</g,'><').replace(/\r\n/g,'\n').trim();
-}
-
 function u8ToB64(u8){
-  let s=''; for(let i=0;i<u8.length;i++) s+=String.fromCharCode(u8[i]);
-  return btoa(s);
+let s="";u8.forEach(b=>s+=String.fromCharCode(b));
+return btoa(s);
 }
 
-// generate key+iv and encrypt text -> return base64 strings
-async function encryptText(plain){
-  const enc = new TextEncoder();
-  const key = await crypto.subtle.generateKey({name:'AES-GCM', length:256}, true, ['encrypt','decrypt']);
-  const iv = crypto.getRandomValues(new Uint8Array(12));
-  const cipherBuf = await crypto.subtle.encrypt({name:'AES-GCM', iv}, key, enc.encode(plain));
-  const rawKey = await crypto.subtle.exportKey('raw', key);
-  return {
-    key: u8ToB64(new Uint8Array(rawKey)),
-    iv: u8ToB64(iv),
-    cipher: u8ToB64(new Uint8Array(cipherBuf))
-  };
+async function encryptHTML(text){
+const enc=new TextEncoder();
+const key=await crypto.subtle.generateKey({name:"AES-GCM",length:256},true,["encrypt","decrypt"]);
+const iv=crypto.getRandomValues(new Uint8Array(12));
+const cipher=await crypto.subtle.encrypt({name:"AES-GCM",iv},key,enc.encode(text));
+const raw=await crypto.subtle.exportKey("raw",key);
+return{
+key:u8ToB64(new Uint8Array(raw)),
+iv:u8ToB64(iv),
+cipher:u8ToB64(new Uint8Array(cipher))
+};
 }
 
-// build loader HTML that will decrypt and then create iframe.srcdoc (= best compatibility for inline scripts)
-function buildLoader(payload){
-  // payload.key, payload.iv, payload.cipher are base64 strings
-  // we will decode + importKey + decrypt then set iframe.srcdoc = decryptedHTML
-  return `<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Protected</title>
-<style>html,body{height:100%;margin:0;background:#050517;color:#ddd;font-family:sans-serif}#status{display:flex;align-items:center;justify-content:center;height:100vh;font-size:16px;opacity:0.9}</style>
-</head>
+function buildHTMLLoader(p){
+return `<!DOCTYPE html>
+<html>
 <body>
-<div id="status">Decrypting...</div>
 <script>
 (async()=>{
-  try{
-    const b64ToU8 = s => Uint8Array.from(atob(s), c=>c.charCodeAt(0));
-    const keyRaw = b64ToU8("${payload.key}");
-    const iv = b64ToU8("${payload.iv}");
-    const ct = b64ToU8("${payload.cipher}");
-
-    const key = await crypto.subtle.importKey("raw", keyRaw.buffer, {name:"AES-GCM"}, false, ["decrypt"]);
-    const pt = await crypto.subtle.decrypt({name:"AES-GCM", iv}, key, ct.buffer);
-    const html = new TextDecoder().decode(pt);
-
-    // Create iframe and use srcdoc for best inline-script compatibility
-    const iframe = document.createElement('iframe');
-    iframe.style.border = '0';
-    iframe.style.width = '100%';
-    iframe.style.height = '100vh';
-    iframe.srcdoc = html;
-
-    // replace body content with iframe
-    document.body.innerHTML = '';
-    document.body.appendChild(iframe);
-  }catch(e){
-    const el = document.getElementById('status');
-    if(el) el.innerHTML = '<div style="color:#ff8080; text-align:center;">Decryption failed.<br>' + (e && e.message ? e.message : e) + '</div>';
-    console.error(e);
-  }
+const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+const key=await crypto.subtle.importKey("raw",b64("${p.key}"),"AES-GCM",false,["decrypt"]);
+const plain=await crypto.subtle.decrypt(
+{name:"AES-GCM",iv:b64("${p.iv}")},
+key,
+b64("${p.cipher}")
+);
+document.body.innerHTML=new TextDecoder().decode(plain);
 })();
 <\/script>
 </body>
 </html>`;
 }
 
-// ---------- UI wiring ----------
-const src = document.getElementById('src');
-const out = document.getElementById('out');
-let lastLoader = '';
+const src=document.getElementById("src");
+const out=document.getElementById("out");
+const outputSection=document.getElementById("outputSection");
+let last,iframe;
 
-document.getElementById('encryptBtn').addEventListener('click', async () => {
-  const raw = src.value || '';
-  if(!raw.trim()){ alert('Tempel HTML yang ingin dienkripsi di kotak kiri.'); return; }
+encryptBtn.onclick=async()=>{
+if(!src.value.trim())return alert("Tempel HTML dulu");
+out.value="Encrypting...";
+const payload=await encryptHTML(src.value);
+last=buildHTMLLoader(payload);
+out.value=last;
+};
 
-  out.value = 'Encrypting... (please wait)';
-  try{
-    const html = minifyHTML(raw);
-    const payload = await encryptText(html);
-    const loader = buildLoader(payload);
-    lastLoader = loader;
-    out.value = loader;
-    alert('Selesai: hasil terenkripsi siap. Klik Download/Preview.');
-  }catch(e){
-    console.error(e);
-    alert('Gagal saat enkripsi: ' + (e && e.message ? e.message : e));
-    out.value = '';
-  }
-});
+copyBtn.onclick=async()=>{
+if(!last)return alert("Belum ada hasil");
+await navigator.clipboard.writeText(last);
+alert("Tersalin!");
+};
 
-document.getElementById('previewBtn').addEventListener('click', () => {
-  if(!lastLoader){ alert('Belum ada hasil — klik Encrypt dulu.'); return; }
-  const w = window.open();
-  w.document.write(lastLoader);
-  w.document.close();
-});
+downloadBtn.onclick=()=>{
+if(!last)return alert("Belum ada hasil");
+const blob=new Blob([last],{type:"text/html"});
+const a=document.createElement("a");
+a.href=URL.createObjectURL(blob);
+a.download="encrypted_loader.html";
+a.click();
+};
 
-document.getElementById('copyBtn').addEventListener('click', async () => {
-  if(!lastLoader){ alert('Belum ada hasil — klik Encrypt dulu.'); return; }
-  try{
-    await navigator.clipboard.writeText(lastLoader);
-    alert('Hasil tersalin ke clipboard!');
-  }catch(e){
-    prompt('Copy manual — salin teks berikut:', lastLoader);
-  }
-});
+previewBtn.onclick=()=>{
+if(!last)return alert("Belum ada hasil");
+if(iframe) iframe.remove();
 
-document.getElementById('downloadBtn').addEventListener('click', () => {
-  if(!lastLoader){ alert('Belum ada hasil — klik Encrypt dulu.'); return; }
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([lastLoader], {type:'text/html'}));
-  a.download = 'protected-'+new Date().toISOString().replace(/[:.]/g,'-')+'.html';
-  a.click();
-  setTimeout(()=>URL.revokeObjectURL(a.href), 2000);
-});
+iframe=document.createElement("iframe");
+iframe.style.width="100%";
+iframe.style.height="500px";
+iframe.style.marginTop="15px";
+iframe.style.border="1px solid rgba(255,255,255,.2)";
+iframe.style.borderRadius="12px";
+iframe.srcdoc=last;
+
+outputSection.appendChild(iframe);
+};
 </script>
+
 </body>
 </html>
